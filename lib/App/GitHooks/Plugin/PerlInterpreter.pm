@@ -27,11 +27,11 @@ other developers don't invoke the system Perl by mistake.
 
 =head1 VERSION
 
-Version 1.0.0
+Version 1.0.1
 
 =cut
 
-our $VERSION = '1.0.0';
+our $VERSION = '1.0.1';
 
 
 =head1 CONFIGURATION OPTIONS
@@ -117,7 +117,7 @@ sub run_pre_commit_file
 	my $interpreter_regex = $config->get_regex( 'PerlInterpreter', 'interpreter_regex' );
 	die "The [PerlInterpreter] section of your config file is missing a 'interpreter_regex' key.\n"
 		if !defined( $interpreter_regex ) || ( $interpreter_regex !~ /\w/ );
-	return $PLUGIN_RETURN_FAILED
+	die "$first_line\n"
 		if $first_line !~ /$interpreter_regex/;
 
 	return $PLUGIN_RETURN_PASSED;
